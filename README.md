@@ -41,8 +41,8 @@ The final dataset should be
 Before post new dataset to database, please make sure the corresponding table in the database is fully wiped out. 
 This can be operated with the help of django **dbshell** tools.
 In the following commnand:
-replace <table-name> with _disclosure_disclosure_
-replace <app-name> with _disclosure_
+replace "<table-name>" with _disclosure_disclosure_
+replace "<app-name>" with _disclosure_
 
 drop the old table in database
 ```console
