@@ -35,4 +35,36 @@ python datacleaning.py
 The final dataset should be 
 **fullFracFocus_joined_correctedcas_addedmatchflag_chemcascorrected_addedwelldepth.csv**
 
+## Post dataset to MySQL in AWS
+
+### Clean the old table in database
+Before post new dataset to database, please make sure the corresponding table in the database is fully wiped out. 
+This can be operated with the help of django **dbshell** tools.
+In the following commnand:
+replace <table-name> with _disclosure_disclosure_
+replace <app-name> with _disclosure_
+
+drop the old table in database
+```console
+python manage.py dbshell
+drop table <table-name>
+```
+recreate an empty table through django, note the following command is not in the dbshell
+```console
+rm -r <app-name>/migrations/ 
+python manage.py makemigrations <app-name> 
+python manage.py sqlmigrate <app-name> 0001_initial
+```
+Copy the command in the terminal, restart the dbshell if was closed in previous step
+```console
+python manage.py dbshell
+```
+Past the command to recreate the table in database
+
+### Post processed csv file to the target table in database
+In postBydftoSQL.py file, fill in with correct username and password
+
+```console
+python postBydftoSQL.py
+```
 
